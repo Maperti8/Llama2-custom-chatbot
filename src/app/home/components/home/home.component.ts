@@ -16,6 +16,7 @@ export class HomeComponent {
   botResponses: string = '';
 
   sendMessage() {
+    console.log()
     const userMessage = this.userInput;
     this.userInputs.push(this.userInput);
     this.chatbotService.getResponse(userMessage).subscribe((data) => {
