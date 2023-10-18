@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/components/home/home.component';
-// service for getting theplicate token
-import { TokenService } from './home/services/token.service';
+// init token service 
+import { AppInitService } from './home/services/init';
 
-export function initializeApp(appInitializerService: TokenService) {
-  return () => appInitializerService.initializeApp();
+export function initializeApp(appInitService: AppInitService) {
+  return (): Promise<any> => { 
+    return appInitService.Init();
+  }
 }
 
 @NgModule({
@@ -23,12 +25,10 @@ export function initializeApp(appInitializerService: TokenService) {
     BrowserAnimationsModule
   ],
   providers: [
-    TokenService,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initializeApp,
-      multi: true
-    }
+    AppInitService,
+    { provide: APP_INITIALIZER,useFactory: initializeApp, 
+      deps: [AppInitService], 
+      multi: true}
   ],
   bootstrap: [AppComponent]
 })
