@@ -11,16 +11,22 @@ export class HomeComponent {
 
   constructor(private chatbotService: ChatbotService) { }
 
-  messages: { user: string, bot: string }[] = [];
   userInput: string = '';
+  userInputs: string [] = [];
+  botResponses: string = '';
 
   sendMessage() {
     const userMessage = this.userInput;
-    console.log(userMessage)
-    this.chatbotService.getResponse(userMessage).subscribe((data) => {;
-      this.messages.push({ user: this.userInput, bot: data });
-    });
+    this.userInputs.push(this.userInput);
+    this.chatbotService.getResponse(userMessage).subscribe((data) => {
+      console.log(data)
+      if (Array.isArray(data)) {
+        const botResponse = data.join('');
+        this.botResponses = botResponse;
   
+      } 
+    });
+
   }
 
 }

@@ -13,7 +13,7 @@ router.get('/replicate', async (req, res) => {
 
   const output = await replicate.run(process.env.LAMA_API_TOKEN, {
     input: {
-      prompt: prompt, 
+      prompt: "how many seconds in minute", 
     },
   });
 
