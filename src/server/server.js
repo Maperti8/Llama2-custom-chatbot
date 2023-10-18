@@ -1,15 +1,15 @@
 const express = require("express");
-const router = express.Router();
+require('dotenv').config();
 
 const app = express();
 const port = 3000;
 
 app.listen(port, () => {
-	console.log(`Success! Your application is running on port ${port}.`);
+	console.log(`Application is running on port ${port}.`);
 });
 
 app.get("/", (req, res) => {
-    res.end(`Welcome`);
+    res.end(`Backend for Llama2 chatbot`);
 })
 
 // Import the "about" router
