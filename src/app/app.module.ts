@@ -4,9 +4,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// eager laoded components
 import { HomeComponent } from './home/components/home/home.component';
 // init token service 
-import { AppInitService } from './home/services/init';
+import { AppInitService } from './init';
+import { MaterialModule } from './modules/material/material-module';
 
 export function initializeApp(appInitService: AppInitService) {
   return (): Promise<any> => { 
@@ -22,7 +24,8 @@ export function initializeApp(appInitService: AppInitService) {
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [
     AppInitService,
