@@ -15,12 +15,11 @@ export class HomeComponent {
   userInput: string = '';
 
   sendMessage() {
-    console.log(this.userInput)
     const userMessage = this.userInput;
-
-    this.chatbotService.getResponse(this.userInput).subscribe((data => {
-      console.log(data);
-    }))
+    console.log(userMessage)
+    this.chatbotService.getResponse(userMessage).subscribe((data) => {;
+      this.messages.push({ user: this.userInput, bot: data });
+    });
   
   }
 
