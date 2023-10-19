@@ -1,12 +1,18 @@
-.center-card {
+.center-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Make the container take up the full viewport height */
+  }
+  
+  .chat-container {
+    display: flex;
+    justify-content: space-between; /* Arrange input and button side by side */
+    width: auto; /* Allow the container to expand to fit its content */
+    max-width: 100%; /* Ensure the container doesn't exceed the viewport width */
   }
   
   .example-card {
-    width: 80%;
-    max-width: 400px; /* Adjust the maximum width as needed */
+    /* Add any additional styling for your mat-card here */
   }
   
