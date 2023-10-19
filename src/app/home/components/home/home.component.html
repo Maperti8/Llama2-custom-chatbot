@@ -1,27 +1,34 @@
-<div class="center-container">
-    <div class="chat-window">
-        <div class="chat-window">
-            <mat-card class="example-card">
-                <mat-card-header>
-                  <mat-card-title>
-                    <div>{{userInput}}</div>
-                  </mat-card-title>
-                </mat-card-header>
-                <mat-card-content>
-                    <div >
-                        <div>{{ botOutput }}</div>
-                    </div>
-                </mat-card-content>
-                <mat-card-footer>
-                  <!-- Your footer content goes here -->
-                </mat-card-footer>
-            </mat-card>
+<mat-toolbar class="toolbar">
+  <img src="../../../../assets/depositphotos_151210832-stock-illustration-white-animal-icon.jpg" alt="Your Image" class="toolbar-icon" />
+  Llama2 chatbot</mat-toolbar>
+
+<div class="container">
+  <div class="chat-window">
+    <mat-card class="chat-card">
+        <mat-card-header>
+          <!-- <mat-card-title>
+            <div>{{userInput}}</div>
+          </mat-card-title> -->
+        </mat-card-header>
+        <mat-card-content>
+          <div>
+            <div *ngIf="botOutput; else defaultResponse">{{ botOutput }}</div>
+          </div>
+          <ng-template #defaultResponse>
+            <div>Please ask me anything</div>
+          </ng-template>
+        </mat-card-content>
+        <mat-card-footer>
         
-            <mat-form-field>
-                <input matInput #message maxlength="256" [(ngModel)]="userInput" (keyup.enter)="sendMessage()" placeholder="Type a question" />
-            </mat-form-field>
-            <button mat-fab extended color="primary" (click)="sendMessage()">Send</button>
-        </div>
-    </div>
-  </div>
+        </mat-card-footer>
+    </mat-card>
+
+    <mat-form-field class="mat-input">
+        <input matInput #message maxlength="256" [(ngModel)]="userInput" (keyup.enter)="sendMessage()" placeholder="Type a question" />
+    </mat-form-field>
+    <button mat-fab extended color="primary" (click)="sendMessage()">Send</button>
+</div>
+</div>
+
+        
 
