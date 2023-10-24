@@ -1,14 +1,44 @@
-<mat-card class="chat-window">
-    <div class="chat-messages">
-      <div class="message user-message" *ngFor="let message of messages">
-        {{ message.user }}
-      </div>
-      <div class="message bot-message" *ngFor="let message of messages">
-        {{ message.bot }}
-      </div>
+<mat-toolbar class="toolbar">
+  <div class="left-content">
+    <img src="../../../../assets/depositphotos_151210832-stock-illustration-white-animal-icon.jpg" alt="Your Image" class="toolbar-icon" />
+    Llama2 chatbot
+  </div>
+  <div class="right-content">
+    <div class="about-button">
+      <button mat-fab color="primary" (click)="toggleAboutCard()">About</button>
     </div>
-    <mat-form-field>
-      <input matInput [(ngModel)]="userInput" (keyup.enter)="sendMessage()" placeholder="Type a message..." />
-    </mat-form-field>
-    <button mat-button (click)="sendMessage()">Send</button>
-  </mat-card>
+  </div>
+</mat-toolbar>
+
+
+<!-- loading bar -->
+<mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+<div class="container">
+  <div class="left"></div>
+  <div class =middle>
+    <div class="chat-window">
+      <mat-card class="chat-card">
+        <mat-card-content>
+          <div>
+            <div class="card-content" *ngIf="botOutput; else defaultResponse">{{ botOutput }}</div>
+          </div>
+          <ng-template #defaultResponse>
+            <div class="card-content" *ngIf="!isLoading">Ask me anything</div>
+          </ng-template>
+        </mat-card-content>
+      </mat-card>
+  
+      <mat-form-field class="mat-input">
+          <input [disabled]="isLoading" matInput #message maxlength="256" [(ngModel)]="userInput" (keyup.enter)="sendMessage()" placeholder="Type a question" />
+      </mat-form-field>
+      <button mat-fab extended color="primary" (click)="sendMessage()" [disabled]="isLoading">Send</button>
+    </div>
+  </div>
+
+  <div class="about-card" *ngIf="toggleAbout">
+    <app-about></app-about>
+  </div>
+</div>
+
+        
+

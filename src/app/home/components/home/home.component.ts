@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+// chatbot service
 import { ChatbotService } from '../../services/chatbot.service';
 
 @Component({
@@ -11,17 +12,24 @@ export class HomeComponent {
 
   constructor(private chatbotService: ChatbotService) { }
 
-  messages: { user: string, bot: string }[] = [];
   userInput: string = '';
+  botOutput: string = '';
+  isLoading: boolean = false;
+  toggleAbout: boolean = false;
 
   sendMessage() {
-    console.log(this.userInput)
-    const userMessage = this.userInput;
+    this.isLoading = true;
+    this.chatbotService.getResponse(this.userInput).subscribe((data) => {
+      if (Array.isArray(data)) {
+        const botResponse = data.join('');
+        this.botOutput = botResponse;
+        this.isLoading = false;
+      } 
+    });
+  }
 
-    this.chatbotService.getResponse(this.userInput).subscribe((data => {
-      console.log(data);
-    }))
-  
+  toggleAboutCard() {
+   this.toggleAbout = !this.toggleAbout
   }
 
 }
