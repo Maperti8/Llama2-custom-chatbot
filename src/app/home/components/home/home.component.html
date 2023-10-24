@@ -1,33 +1,31 @@
 <mat-toolbar class="toolbar">
   <img src="../../../../assets/depositphotos_151210832-stock-illustration-white-animal-icon.jpg" alt="Your Image" class="toolbar-icon" />
-  Llama2 chatbot</mat-toolbar>
+
+    <button mat-fab>About</button>
+
+  Llama2 chatbot
+</mat-toolbar>
+
+<mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
 
 <div class="container">
   <div class="chat-window">
     <mat-card class="chat-card">
-        <mat-card-header>
-          <!-- <mat-card-title>
-            <div>{{userInput}}</div>
-          </mat-card-title> -->
-        </mat-card-header>
-        <mat-card-content>
-          <div>
-            <div *ngIf="botOutput; else defaultResponse">{{ botOutput }}</div>
-          </div>
-          <ng-template #defaultResponse>
-            <div>Please ask me anything</div>
-          </ng-template>
-        </mat-card-content>
-        <mat-card-footer>
-        
-        </mat-card-footer>
+      <mat-card-content>
+        <div>
+          <div class="card-content" *ngIf="botOutput; else defaultResponse">{{ botOutput }}</div>
+        </div>
+        <ng-template #defaultResponse>
+          <div class="card-content" *ngIf="!isLoading">Ask me anything</div>
+        </ng-template>
+      </mat-card-content>
     </mat-card>
 
     <mat-form-field class="mat-input">
-        <input matInput #message maxlength="256" [(ngModel)]="userInput" (keyup.enter)="sendMessage()" placeholder="Type a question" />
+        <input [disabled]="isLoading" matInput #message maxlength="256" [(ngModel)]="userInput" (keyup.enter)="sendMessage()" placeholder="Type a question" />
     </mat-form-field>
-    <button mat-fab extended color="primary" (click)="sendMessage()">Send</button>
-</div>
+    <button mat-fab extended color="primary" (click)="sendMessage()" [disabled]="isLoading">Send</button>
+  </div>
 </div>
 
         

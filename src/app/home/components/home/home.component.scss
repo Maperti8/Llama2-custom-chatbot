@@ -16,11 +16,14 @@
   min-height: 15vh;
   min-width: 500px;
   max-width: 500px;
+  border-radius: 15px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
   margin-bottom: 3vh;
 }
 
-.mat-mdc-card-content {
+.card-content {
+  color: #9E9FA5;
+  font-size: 20px;
   padding-bottom: 5px;
 }
 
@@ -42,6 +45,12 @@
   margin-right: 10px; 
   position: relative;
   border-radius: 50%;
+}
+
+.about {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 

@@ -17,7 +17,6 @@ router.get('/replicate', async (req, res) => {
     },
   });
 
-  console.log(output);
   res.send(output);
 });
 
