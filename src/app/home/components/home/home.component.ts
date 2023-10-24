@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+// chatbot service
 import { ChatbotService } from '../../services/chatbot.service';
 
 @Component({
@@ -14,6 +15,7 @@ export class HomeComponent {
   userInput: string = '';
   botOutput: string = '';
   isLoading: boolean = false;
+  toggleAbout: boolean = false;
 
   sendMessage() {
     this.isLoading = true;
@@ -24,7 +26,10 @@ export class HomeComponent {
         this.isLoading = false;
       } 
     });
+  }
 
+  toggleAboutCard() {
+   this.toggleAbout = !this.toggleAbout
   }
 
 }

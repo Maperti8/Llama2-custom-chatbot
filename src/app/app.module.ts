@@ -2,6 +2,10 @@ import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
+// imported modules
+import { AboutModule } from './modules/about-module/about-module.module';
+import { MaterialModule } from './modules/material/material-module';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -9,7 +13,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/components/home/home.component';
 // init token service 
 import { AppInitService } from './init';
-import { MaterialModule } from './modules/material/material-module';
 
 export function initializeApp(appInitService: AppInitService) {
   return (): Promise<any> => { 
@@ -28,6 +31,7 @@ export function initializeApp(appInitService: AppInitService) {
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
+    AboutModule,
   ],
   providers: [
     AppInitService,

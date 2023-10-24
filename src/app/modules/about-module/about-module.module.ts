@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+// modules
+import { MaterialModule } from '../material/material-module';
 // components
 import { AboutComponent } from './components/about/about.component';
 // routing
@@ -12,7 +14,11 @@ import { AboutRoutingModule } from './about-routing-module';
   ],
   imports: [
     CommonModule,
-    AboutRoutingModule
-  ]
+    AboutRoutingModule,
+    MaterialModule
+  ],
+  exports: [
+    AboutComponent
+  ],
 })
 export class AboutModule { }

@@ -1,30 +1,42 @@
 <mat-toolbar class="toolbar">
-  <img src="../../../../assets/depositphotos_151210832-stock-illustration-white-animal-icon.jpg" alt="Your Image" class="toolbar-icon" />
-
-    <button mat-fab>About</button>
-
-  Llama2 chatbot
+  <div class="left-content">
+    <img src="../../../../assets/depositphotos_151210832-stock-illustration-white-animal-icon.jpg" alt="Your Image" class="toolbar-icon" />
+    Llama2 chatbot
+  </div>
+  <div class="right-content">
+    <div class="about-button">
+      <button mat-fab color="primary" (click)="toggleAboutCard()">About</button>
+    </div>
+  </div>
 </mat-toolbar>
 
+
+<!-- loading bar -->
 <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
-
 <div class="container">
-  <div class="chat-window">
-    <mat-card class="chat-card">
-      <mat-card-content>
-        <div>
-          <div class="card-content" *ngIf="botOutput; else defaultResponse">{{ botOutput }}</div>
-        </div>
-        <ng-template #defaultResponse>
-          <div class="card-content" *ngIf="!isLoading">Ask me anything</div>
-        </ng-template>
-      </mat-card-content>
-    </mat-card>
+  <div class="left"></div>
+  <div class =middle>
+    <div class="chat-window">
+      <mat-card class="chat-card">
+        <mat-card-content>
+          <div>
+            <div class="card-content" *ngIf="botOutput; else defaultResponse">{{ botOutput }}</div>
+          </div>
+          <ng-template #defaultResponse>
+            <div class="card-content" *ngIf="!isLoading">Ask me anything</div>
+          </ng-template>
+        </mat-card-content>
+      </mat-card>
+  
+      <mat-form-field class="mat-input">
+          <input [disabled]="isLoading" matInput #message maxlength="256" [(ngModel)]="userInput" (keyup.enter)="sendMessage()" placeholder="Type a question" />
+      </mat-form-field>
+      <button mat-fab extended color="primary" (click)="sendMessage()" [disabled]="isLoading">Send</button>
+    </div>
+  </div>
 
-    <mat-form-field class="mat-input">
-        <input [disabled]="isLoading" matInput #message maxlength="256" [(ngModel)]="userInput" (keyup.enter)="sendMessage()" placeholder="Type a question" />
-    </mat-form-field>
-    <button mat-fab extended color="primary" (click)="sendMessage()" [disabled]="isLoading">Send</button>
+  <div class="about-card" *ngIf="toggleAbout">
+    <app-about></app-about>
   </div>
 </div>
 
