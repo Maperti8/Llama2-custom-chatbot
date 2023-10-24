@@ -18,12 +18,4 @@ export class ChatbotService {
     const params = new HttpParams().set('userPromt', userPromt);
     return this.http.get<string>(this.apiUrl + 'replicate', { params });
   }
-
-  showLoading() {
-    this.isLoading.next(true);
-  }
-
-  hideLoading() {
-    this.isLoading.next(false);
-  }
 }

@@ -18,7 +18,6 @@ export class HomeComponent {
   sendMessage() {
     this.isLoading = true;
     this.chatbotService.getResponse(this.userInput).subscribe((data) => {
-      console.log(data)
       if (Array.isArray(data)) {
         const botResponse = data.join('');
         this.botOutput = botResponse;
